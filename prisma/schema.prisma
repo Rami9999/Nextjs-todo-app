@@ -2,3 +2,18 @@ datasource db {
     provider = "mongodb"
     url=env("DATABASE_URL")
 }
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model Todo{
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    title String
+    body String?
+    completed Boolean @default(false)
+    //user User @relation(fields:[user_id],references: [id])
+    //user_id String @db.ObjectId
+    createdAt DateTime @default(now())
+    //completedAt DateTime?
+}

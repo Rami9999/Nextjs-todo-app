@@ -21,7 +21,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { createTodoAction } from '@/actions/todo.actions';
 import { Checkbox } from "@/components/ui/checkbox"
 import Spinner from './Spinner';
-const AddTodoForm = () => {
+const AddTodoForm = ({userId}:{userId:string | null}) => {
 
     const [isLoading,setIsLoading] = useState(false)
     const [isOpen,setIsOpen] = useState(false)
@@ -45,7 +45,8 @@ const AddTodoForm = () => {
     await createTodoAction({
         title,
         body,
-        completed
+        completed,
+        userId
     });
     setIsOpen(false)
   }

@@ -3,6 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ModeToggle } from "@/components/ModeToggle";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
+import Nav from "@/components/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,18 +25,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <ClerkProvider>
+    <html lang="en" >
       <body className={inter.className}>
         <ThemeProvider
         attribute="class"
+        
         defaultTheme="system"
         enableSystem
         disableTransitionOnChange
         >
-          <ModeToggle/>
+          <Nav />
           {children}
-          </ThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

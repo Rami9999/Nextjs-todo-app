@@ -39,7 +39,7 @@ import TodosTableActions from "./TodosTableActions";
           </TableRow>
         </TableHeader>
         <TableBody>
-          {todos.map((todo) => (
+          {todos.length>0 &&todos.map((todo) => (
             <TableRow key={todo.id}>
               <TableCell className="font-medium">{todo.id}</TableCell>
               <TableCell>{todo.title}</TableCell>
@@ -53,7 +53,7 @@ import TodosTableActions from "./TodosTableActions";
         <TableFooter>
           <TableRow>
             <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">{todos.length}</TableCell>
+            <TableCell className="text-right">{todos.length ? todos.length:"You dont have todos yet"}</TableCell>
           </TableRow>
         </TableFooter>
       </Table>

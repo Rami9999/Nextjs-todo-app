@@ -13,7 +13,7 @@ model Todo{
     body String?
     completed Boolean @default(false)
     //user User @relation(fields:[user_id],references: [id])
-    //user_id String @db.ObjectId
+    user_id String
     createdAt DateTime @default(now())
     //completedAt DateTime?
 }

@@ -1,5 +1,6 @@
 "use server";
 
+import { ITodo } from "@/interfaces";
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { title } from "process";
@@ -13,7 +14,9 @@ export const getTodoListAction = async () => {
     })
 };
 export const getTodoByIdAction = async(id:string) => {
-    //return await prisma.todo.find(id)
+
+    const todo = await prisma.todo.findFirst({where:{id:id}});
+    return todo;
 };
 export const createTodoAction = async ({title,body,completed}:{title:string,body?:string | undefined,completed:boolean}) => {
     await prisma.todo.create({
@@ -26,7 +29,19 @@ export const createTodoAction = async ({title,body,completed}:{title:string,body
     });
     revalidatePath("/");
 };
-export const updateTodoAction = async () => {};
+export const updateTodoAction = async (todo:ITodo) => {
+    await prisma.todo.update({
+        where:{
+            id:todo.id
+        },
+        data:{
+            title:todo.title,
+            body:todo.body,
+            completed:todo.completed
+        }
+    });
+    revalidatePath("/");
+};
 export const deleteTodoAction = async (id:string) => {
     await prisma.todo.delete({
         where:{

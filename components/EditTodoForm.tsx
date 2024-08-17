@@ -103,7 +103,7 @@ const EditTodoForm =  ({todo}:{todo:ITodo}) => {
                     <FormItem>
                     <div className='flex items-center space-x-1'>
                         <FormControl>
-                        <Checkbox checked={field.value} onCheckedChange={field.onChange} id="completed" {...field} />
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange} id="completed" />
                         </FormControl>
                         <FormLabel className='cursor-pointer'>Completed</FormLabel>
                     </div>
